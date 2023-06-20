@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp"
+    android:layout_marginHorizontal="10dp"
+    android:elevation="12dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_margin="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_item_sun"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_sun"
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
+        
+        <TextView
+            android:id="@+id/item_tv_date"
+            android:textColor="@color/black"
+            android:fontFamily="@font/barlow_thin"
+            app:layout_constraintEnd_toEndOf="@id/img_item_sun"
+            app:layout_constraintStart_toStartOf="@id/img_item_sun"
+            app:layout_constraintTop_toBottomOf="@id/img_item_sun"
+            android:gravity="center"
+            android:text="Mon, 21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/item_tv_degree"
+            android:textSize="8sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/barlow_thin"
+            app:layout_constraintStart_toStartOf="@id/item_tv_date"
+            app:layout_constraintTop_toBottomOf="@id/item_tv_date"
+            android:gravity="center"
+            android:text="35°C"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/item_img_degree_up"
+            app:layout_constraintTop_toBottomOf="@id/item_tv_date"
+            app:layout_constraintStart_toEndOf="@id/item_tv_degree"
+            android:layout_width="5dp"
+            android:layout_height="7dp"
+            android:src="@drawable/ic_arrow_up"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="2dp"/>
+
+        <TextView
+            android:layout_marginStart="6dp"
+            android:id="@+id/item_tv_degree_down"
+            android:textSize="8sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/barlow_thin"
+            app:layout_constraintStart_toStartOf="@id/item_img_degree_up"
+            app:layout_constraintTop_toBottomOf="@id/item_tv_date"
+            android:gravity="center"
+            android:text="35°C"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <ImageView
+
+            android:id="@+id/item_img_degree_down"
+            app:layout_constraintTop_toBottomOf="@id/item_tv_date"
+            app:layout_constraintStart_toEndOf="@id/item_tv_degree_down"
+            android:layout_width="5dp"
+            android:layout_height="7dp"
+            android:src="@drawable/ic_arrow_down"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="2dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>
