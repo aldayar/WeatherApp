@@ -1,61 +1,62 @@
 package com.example.newweather.ui.activity
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.Observer
 import com.example.newweather.R
-import com.example.newweather.data.model.CurrentWeather
+import com.example.newweather.core.UIState
 import com.example.newweather.data.model.WeatherResponse
-import com.example.newweather.data.remote.WeatherApiClient
 import com.example.newweather.databinding.ActivityMainBinding
-import com.example.newweather.databinding.WetherInfoItemBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val adapter: WeatherAdapter by lazy { WeatherAdapter() }
+    private val weatherViewModel: WeatherViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        intiRcView()
 
-        val weatherApi = WeatherApiClient.create()
-        val city = "Bishkek"
-        val apiKey = "my_api_key"
-
-        val call = weatherApi.getCurrentWeather(city, apiKey)
-        call.enqueue(object : Callback<WeatherResponse> {
-            override fun onResponse(
-                call: Call<WeatherResponse>,
-                response: Response<WeatherResponse>
-            ) {
-                if (response.isSuccessful){
-                    val weatherResponse = response.body()
-                    if (weatherResponse!= null){
-                        val currentWeather = weatherResponse.currentWeather
-                        showWeather(currentWeather)
-                    }
+        weatherViewModel.weatherLiveData.observe(this) { state ->
+            when (state) {
+                is UIState.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
                 }
-
+                is UIState.Success->{
+                   state.data?.let { showWeather(it) }
+                }
+                is UIState.Error->{
+                    Log.e(state.msg.toString(),"ololo" )
+                    Toast.makeText(this, "Failed while loading, try again", Toast.LENGTH_SHORT).show()
+                }
             }
+            weatherViewModel.getCurrentWeather("Bishkek")
+        }
 
-            override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
     }
-    private fun showWeather(currentWeather: CurrentWeather){
-        val temperatureText = "${currentWeather.temp_c}°C"
-        val humidityText = "Humidity: ${currentWeather.humidity}%"
-        val pressureText = "Pressure: ${currentWeather.pressure_mb} mBar"
-        val windSpeedText = "Wind Speed: ${currentWeather.wind_kph} km/h"
-
-
-        binding.tvDagre.text = temperatureText
-        binding.tvHumidity.text = humidityText
-        binding.tvPressure.text = pressureText
-        binding.tvWindSpeed.text = windSpeedText
+    private fun intiRcView() {
+        binding.recyclerView.adapter = adapter
+        val model = listOf(
+            WeatherModel(R.drawable.ic_sun, "Mon, 12", "35°C", "26°C"),
+            WeatherModel(R.drawable.ic_clouds, "Tue, 22", "35°C", "27°C"),
+            WeatherModel(R.drawable.ic_sun, "Wed, 22", "34°C", "29°C")
+        )
+        adapter.submitList(model)
+    }
+    private fun showWeather(weatherResponse: WeatherResponse) = with(binding){
+        tvWeather.text = weatherResponse.currentWeather.condition.text
+        tvHumidity.text = "${weatherResponse.currentWeather.humidity}"
+        tvWindSpeed.text = "${weatherResponse.currentWeather.wind_kph}"
+        tvPressure.text = "${weatherResponse.currentWeather.pressure_mb}"
     }
 }

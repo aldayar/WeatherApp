@@ -6,9 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("current")
-    fun getCurrentWeather(
-        @Query("city") city: String,
+    @GET("currentConditions/v1")
+     fun getCurrentWeather(
+        @Query("location") location: String,
         @Query("key") apiKey: String,
-    ): Call<WeatherResponse>
+    ): Call<List<WeatherResponse>>
 }

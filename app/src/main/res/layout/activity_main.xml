@@ -16,6 +16,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ProgressBar
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/container_cl"
+        android:id="@+id/progress_Bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate = "true"
+        android:max="100"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"
+        android:progress="0"/>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:id="@+id/container_cl"

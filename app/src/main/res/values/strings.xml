@@ -1,14 +1,15 @@
 <resources>
     <string name="app_name">NewWeather</string>
-    <string name="dagre">35°C: %s</string>
-    <string name="humidity">Humidity: %s</string>
+    <string name="dagre">35°C</string>
+    <string name="humidity">Humidity</string>
     <string name="_73">73%: %s</string>
     <string name="tv_city">Mumbai, India</string>
     <string name="tv_date">Sunday, 19 May 2019 | 4:30PM</string>
     <string name="tv_degree">°C</string>
-    <string name="tv_wether">Sunny: %s</string>
-    <string name="tv_temperature">%s°C</string>
-    <string name="tv_humidity">Humidity: %s%%</string>
-    <string name="tv_pressure">Pressure: %s mBar</string>
-    <string name="tv_wind_speed">Wind Speed: %s km/h</string>
+    <string name="tv_wether">Sunny</string>
+    <string name="tv_temperature">33</string>
+    <string name="tv_humidity">73%</string>
+    <string name="tv_pressure">1,007mBar</string>
+    <string name="tv_wind_speed">23km/h</string>
+
 </resources>
