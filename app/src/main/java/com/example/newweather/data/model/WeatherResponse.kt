@@ -17,6 +17,7 @@ data class Location(
     val localTime: Int,
 )
 data class CurrentWeather(
+    val epochTime: Long,
     val last_updated_epoch: Int,
     val last_updated: String,
     val temp_c: Int,

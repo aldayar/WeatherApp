@@ -51,15 +51,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tv_date"
+            <LinearLayout
+                android:id="@+id/cont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="@string/tv_date"
-                android:textSize="14sp"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_day_of_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="Monday"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/tv_date"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_city_info"
@@ -71,9 +88,9 @@
                 android:text="@string/tv_city"
                 android:textColor="@color/blue"
                 android:textSize="13sp"
-                app:layout_constraintBottom_toBottomOf="@id/tv_date"
+                app:layout_constraintBottom_toBottomOf="@id/cont"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_date" />
+                app:layout_constraintTop_toTopOf="@id/cont" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
