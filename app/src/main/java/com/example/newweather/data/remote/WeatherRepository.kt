@@ -1,27 +1,33 @@
 package com.example.newweather.data.remote
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import com.example.newweather.core.UIState
 import com.example.newweather.data.model.WeatherResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class WeatherRepository(private val apiService: ApiService) {
-    fun getWeather(loctioin: String, callback: (WeatherResponse, String?) -> Unit) {
-        val call = apiService.getCurrentWeather(loctioin, "7480b0b09f454a4e8a8221810232106")
-        call.enqueue(object : Callback<List<WeatherResponse>> {
+    fun getWeather(location: String): MutableLiveData<UIState<WeatherResponse>> {
+        val livedata = MutableLiveData<UIState<WeatherResponse>>()
+        livedata.value = UIState.Loading()
+        val call = apiService.getCurrentWeather(location = location)
+        call.enqueue(object : Callback<WeatherResponse> {
             override fun onResponse(
-                call: Call<List<WeatherResponse>>, response: Response<List<WeatherResponse>>){
-                val weatherResponse = response.body()?.get(0)
-                if (weatherResponse != null) {
-                    callback(weatherResponse, null)
+                call: Call<WeatherResponse>, response: Response<WeatherResponse>
+            ) {
+                if (response.body() != null) {
+                    livedata.value = UIState.Success(response.body())
                 }
             }
 
-            override fun onFailure(call: Call<List<WeatherResponse>>, t: Throwable) {
-                Log.e(t.message.toString(), "ololo" )
+            override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
+                Log.e("ololo", t.message.toString())
+                livedata.value = UIState.Error(t.message)
             }
-
         })
+        return livedata
     }
+
 }

@@ -3,13 +3,17 @@
     <string name="dagre">35°C</string>
     <string name="humidity">Humidity</string>
     <string name="_73">73%: %s</string>
-    <string name="tv_city">Mumbai, India</string>
-    <string name="tv_date">Sunday, 19 May 2019 | 4:30PM</string>
+    <string name="tv_city">Kyrgyzstan, Bishkek</string>
+    <string name="tv_date">19 May 2019 | 4:30PM</string>
     <string name="tv_degree">°C</string>
     <string name="tv_wether">Sunny</string>
     <string name="tv_temperature">33</string>
     <string name="tv_humidity">73%</string>
     <string name="tv_pressure">1,007mBar</string>
     <string name="tv_wind_speed">23km/h</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_select">Select</string>
+    <string name="tv_select_city">Select city</string>
 
 </resources>
