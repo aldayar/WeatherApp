@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.MainActivity">
+    tools:context=".presentation.ui.activity.MainActivity">
 
 
     <ImageView
@@ -58,15 +58,6 @@
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_day_of_week"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:text="Monday"
-                    android:textSize="14sp" />
-
                 <TextView
                     android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
@@ -171,105 +162,6 @@
             app:layout_constraintStart_toStartOf="@id/tv_dagre_max"
             app:layout_constraintTop_toBottomOf="@id/tv_dagre_max" />
 
-        <LinearLayout
-
-            android:id="@+id/container_ll2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_weather">
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:src="@drawable/ic_humidity" />
-
-                <TextView
-                    android:id="@+id/tv_humidity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/barlow_bold"
-                    android:text="@string/tv_humidity"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Humidity"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="62dp"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:src="@drawable/ic_pressure" />
-
-                <TextView
-                    android:id="@+id/tv_pressure"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/barlow_bold"
-                    android:text="@string/tv_pressure"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Pressure"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-
-                    android:layout_width="52dp"
-                    android:layout_height="52dp"
-                    android:src="@drawable/ic" />
-
-                <TextView
-                    android:id="@+id/tv_wind_speed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/barlow_bold"
-                    android:text="@string/tv_wind_speed"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Wind"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-        </LinearLayout>
 
         <LinearLayout
             android:gravity="center_horizontal"
@@ -279,9 +171,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@id/container_ll2"
-            app:layout_constraintStart_toStartOf="@id/container_ll2"
-            app:layout_constraintTop_toBottomOf="@id/container_ll2">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_dagre">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -367,17 +259,48 @@
                     android:textSize="10sp" />
             </LinearLayout>
         </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="30dp"
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        <LinearLayout
+            android:layout_marginBottom="70dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/container_ll3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:spanCount="3"
-            tools:listitem="@layout/wether_info_item" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"
+                android:elevation="12dp"
+                app:cornerRadius="12dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="USA"
+                android:layout_marginStart="60dp"
+                android:id="@+id/btn_lang_eng"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <com.google.android.material.button.MaterialButton
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"
+                android:elevation="12dp"
+                app:cornerRadius="12dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="Rus"
+                android:layout_marginHorizontal="40dp"
+                android:id="@+id/btn_lang_rus"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <com.google.android.material.button.MaterialButton
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"
+                android:elevation="12dp"
+                app:cornerRadius="12dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="kur"
+                android:id="@+id/btn_lang_kur"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

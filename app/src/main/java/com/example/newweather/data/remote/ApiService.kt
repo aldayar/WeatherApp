@@ -1,15 +1,16 @@
 package com.example.newweather.data.remote
 
-import com.example.newweather.data.model.WeatherResponse
-import retrofit2.Call
+import com.example.newweather.BuildConfig.API_KEY
+import com.example.newweather.domain.model.WeatherResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
     @GET("forecast.json")
-     fun getCurrentWeather(
+    suspend fun getCurrentWeather(
         @Query("q") location: String,
-        @Query("key") apiKey: String = "7480b0b09f454a4e8a8221810232106",
+        @Query("key") apiKey: String = API_KEY,
         @Query("days") days: Int = 7
-    ): Call<WeatherResponse>
+    ): Response<WeatherResponse>
 }
